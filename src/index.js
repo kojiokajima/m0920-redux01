@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Provider } from 'react-redux';
+import {createStore} from 'redux'
+import rootReducer from './reducers/rootReducer'
+
+// const rootReducer = 
+const myStore = createStore(rootReducer)
+console.log("STORE: ", myStore) // --> 謎すぎ {dispatch: ƒ, subscribe: ƒ, getState: ƒ, replaceReducer: ƒ, Symbol(observable): ƒ}
+
+// <App />をProviderで囲むことで、<App />の中でstoreが使えるようになる
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={myStore}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
